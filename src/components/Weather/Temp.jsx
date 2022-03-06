@@ -11,7 +11,7 @@ const Temp = () => {
     setSearchvalue(data)
   }
 
-   async function weatherInfo() {
+  const WeatherInfo = async ()=> {
 
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=33956d88be10290790332d39afddd511`);
 
@@ -38,17 +38,13 @@ const Temp = () => {
       country,
       sunset
     }
-
-    setTempInfo(myNewWeatherInfo);
-
-}
+    setTempInfo(myNewWeatherInfo)
+};
 
   useEffect(() => {
-  
-  
-  weatherInfo();
-  
-  },[]);
+   
+    WeatherInfo();
+  });
 
   return (<>
     <div className='wrap'>
@@ -60,7 +56,7 @@ const Temp = () => {
           id='search'
           className='searchTerm'
         ></input>
-        <button className='searchButton' type='button' onClick={weatherInfo}>Search</button>
+        <button className='searchButton' type='button' onClick={WeatherInfo}>Search</button>
       </div>
     </div>
     <WeatherCard tempinfo={tempinfo}/>
