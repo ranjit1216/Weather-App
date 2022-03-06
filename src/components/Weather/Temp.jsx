@@ -11,43 +11,44 @@ const Temp = () => {
     setSearchvalue(data)
   }
 
-  async function weatherInfo() {
-    try {
-      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=33956d88be10290790332d39afddd511`);
+   async function weatherInfo() {
 
-      const data = await res.json();
-      console.log(data);
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=33956d88be10290790332d39afddd511`);
 
-      // obj destructuring
-      const { temp, pressure, humidity } = data.main;
-     // console.log(temp, humidity, pressure);//get temp press humidity in deg
-      const { main } = data.weather[0];
-     // console.log(main); //get cond of weather
-      const { name } = data;
-     // console.log(name); // get city name
-      const {speed} = data.wind;
-      const{ country ,sunset} =data.sys;
+    const data = await res.json();
+    console.log(data);
 
-      const myNewWeatherInfo = {
-        temp,
-        pressure,
-        humidity,
-        main,
-        name,
-        speed,
-        country,
-        sunset
-      }
+    // obj destructuring
+    const { temp, pressure, humidity } = data.main;
+   // console.log(temp, humidity, pressure);//get temp press humidity in deg
+    const { main } = data.weather[0];
+   // console.log(main); //get cond of weather
+    const { name } = data;
+   // console.log(name); // get city name
+    const {speed} = data.wind;
+    const{ country ,sunset} =data.sys;
 
-      setTempInfo(myNewWeatherInfo)
-    } catch (error) {
-      console.log(error);
+    const myNewWeatherInfo = {
+      temp,
+      pressure,
+      humidity,
+      main,
+      name,
+      speed,
+      country,
+      sunset
     }
-  };
+
+    setTempInfo(myNewWeatherInfo);
+
+}
 
   useEffect(() => {
-    weatherInfo();
-  }, []);
+  
+  
+  weatherInfo();
+  
+  },[]);
 
   return (<>
     <div className='wrap'>
